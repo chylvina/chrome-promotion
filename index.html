@@ -16,7 +16,7 @@
       clip: rect(0px, 151px, 190px, 10px);
       overflow: hidden;
       width: 400px;
-      height: 50px;
+      height: 48px;
       position: relative;
       -webkit-perspective: 1100px;
          -moz-perspective: 1100px;
@@ -80,13 +80,28 @@
     <div id="carousel" style="-webkit-transform: translateZ(-192px) rotateX(-120deg);">
       <figure style="opacity: 1; -webkit-transform: rotateX(0deg) translateZ(192px);">
         <img src="img/green-eye.png">
-<a>dsldkflksdjflksjdflksndlfkjskldjflsjdfsljdkflksjdflskjfdessldkfslkdfasndfishdfonslfknelkfnwlenflwenfl</a>
+        <a onclick="_gaq.push(['_trackEvent', 'promotion-green-eye', 'clicked']);" href="https://chrome.google.com/webstore/detail/green-eye/fjbngeppiginhckphonoffahjcoagofd" target="_blank"><h4>Green Eye</h4>Change background and foreground colors for eye health and normal vision.</a>
       </figure>
-      <figure style="opacity: 1; -webkit-transform: rotateX(40deg) translateZ(192px);">2</figure>
-      <figure style="opacity: 1; -webkit-transform: rotateX(80deg) translateZ(192px);">3</figure>
-      <figure style="opacity: 1; -webkit-transform: rotateX(120deg) translateZ(192px);">4</figure>
-      <figure style="opacity: 1; -webkit-transform: rotateX(160deg) translateZ(192px);">5</figure>
-      <figure style="opacity: 1; -webkit-transform: rotateX(200deg) translateZ(192px);">6</figure>
+      <figure style="opacity: 1; -webkit-transform: rotateX(40deg) translateZ(192px);">
+        <img src="img/awesome-clock.png">
+        <a onclick="_gaq.push(['_trackEvent', 'promotion-awesome-clock', 'clicked']);" href="https://chrome.google.com/webstore/detail/awesome-clock/idbfjggljipcaepooophnehgknllgfgk" target="_blank"><h4>Awesome Clock</h4>Interactive world clocks extension, easily one click to show, work offline.</a>
+      </figure>
+      <figure style="opacity: 1; -webkit-transform: rotateX(80deg) translateZ(192px);">
+        <img src="img/quick-markup.png">
+        <a onclick="_gaq.push(['_trackEvent', 'promotion-quick-markup', 'clicked']);" href="https://chrome.google.com/webstore/detail/screen-capture/clcbnchcgjcjphmnpndoelbdhakdlfkk" target="_blank"><h4>Screen capture</h4>Capture webpage freely, mark up with shape, text, one-click upload to share.</a>
+      </figure>
+      <figure style="opacity: 1; -webkit-transform: rotateX(120deg) translateZ(192px);">
+        <img src="img/designer-tools.png">
+        <a onclick="_gaq.push(['_trackEvent', 'promotion-designer-tools', 'clicked']);" href="https://chrome.google.com/webstore/detail/designer-tools/begphfmcgdepfkoofbpkfcnimdeocadd" target="_blank"><h4>Designer Tools</h4>A set of useful tools including eyedropper and ruler for web designers, frontend developers, etc.</a>
+      </figure>
+      <figure style="opacity: 1; -webkit-transform: rotateX(160deg) translateZ(192px);">
+        <img src="img/base64-image.png">
+        <a onclick="_gaq.push(['_trackEvent', 'promotion-base64-image', 'clicked']);" href="https://chrome.google.com/webstore/detail/base64-image-encoder/kncikbgmflaiopejbhnjlkchgcmgbkkj" target="_blank"><h4>Base64 Image Encoder</h3>Encode your image to base64 string.</a>
+      </figure>
+      <figure style="opacity: 1; -webkit-transform: rotateX(200deg) translateZ(192px);">
+        <img src="img/quick-markup.png">
+        <a onclick="_gaq.push(['_trackEvent', 'promotion-mindmap', 'clicked']);" href="https://chrome.google.com/webstore/detail/quick-markup-brainstormin/lnchgfmijphalpadifffpofoakjdffag" target="_blank"><h4>Quick Markup: Brainstorming</h3>Simplify your thoughts by using mindmaps to note down ideas,to-dos and decisions.</a>
+      </figure>
       <!--figure style="opacity: 1; -webkit-transform: rotateX(240deg) translateZ(192px);">7</figure>
       <figure style="opacity: 1; -webkit-transform: rotateX(280deg) translateZ(192px);">8</figure>
       <figure style="opacity: 1; -webkit-transform: rotateX(320deg) translateZ(192px);">9</figure-->
@@ -95,29 +110,20 @@
 </div>
 </div>
 
-
-  <section id="options">
-    <p>
-      <label for="panel-count">panels</label>
-      <input type="range" id="panel-count" value="9" min="3" max="20">
-    <span class=" range-display">9</span></p>
-
-    <p id="navigation">
-      <button id="previous" data-increment="-1">Previous</button>
-      <button id="next" data-increment="1">Next</button>
-    </p>
-
-    <p>
-      <button id="toggle-axis">Toggle Carousel Axis</button>
-    </p>
-
-    <p>
-      <button id="toggle-backface-visibility">Toggle Backface Visibility</button>
-    </p>
-
-  </section>
-
   <script src="js/util.js"></script>
+  <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20877394-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+  </script>
   <script>
     var transformProp = Modernizr.prefixed('transform');
 
@@ -176,19 +182,40 @@
 
 
     var init = function() {
-
       var carousel = new Carousel3D( document.getElementById('carousel') ),
           navButtons = document.querySelectorAll('#navigation button'),
+          intervalID,
+          box = document.querySelector('#ad-box-top'),
 
-      onNavButtonClick = function( event ){
-        var increment = parseInt( event.target.getAttribute('data-increment') );
+      turning = function( increment ){
         carousel.rotation += carousel.theta * increment * -1;
         carousel.transform();
+      },
+
+      startTurn = function() {
+        if(!intervalID) {
+          intervalID = setInterval(function() {
+            turning(1);
+          }, 5*1000);
+        }
+      },
+
+      stopTurn = function() {
+        if(intervalID) {
+          clearInterval(intervalID);
+          intervalID = 0;
+        }
       };
-          
-      for (var i=0; i < 2; i++) {
-        navButtons[i].addEventListener( 'click', onNavButtonClick, false);
-      }
+
+      startTurn();
+
+      box.addEventListener('mouseenter', function() {
+        stopTurn();
+      });
+
+      box.addEventListener('mouseleave', function() {
+        startTurn();
+      });
 
       carousel.panelCount = 6;
       carousel.modify();
@@ -197,6 +224,10 @@
       setTimeout( function(){
         document.body.addClassName('ready');
       }, 0);
+
+      switch(navigator.language) {
+
+      }
 
     };
 

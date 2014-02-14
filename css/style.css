@@ -7,13 +7,12 @@ background: none;
 }
 
 #ad-box-wrapper {
-text-align: center;
+text-align: left;
 width: 100%;
 }
 
 #ad-box-top {
 width: 398px;
-margin: auto;
 }
 
 .curled {
