@@ -23,27 +23,33 @@ border-radius: 0 0 120px 120px / 0 0 6px 6px;
 }
 
 .drop-shadow {
-padding: 10px 12px;
+padding: 4px 0;
 background: #fff;
 -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
+#ad-box-top img {
+  float: left;
+  width: 42px;
+  height: 42px;
+  margin-right: 8px;
+}
+
 #ad-box-top a {
-display: block;
-padding-left: 50px;
-height: 42px;
-font-size: 14px;
-line-height: 14px;
+  text-align: center;
+  display: block;
+  height: 42px;
+  font-size: 14px;
+  line-height: 14px;
+  float: left;
+  color: #2E56A6;
+  width: 330px;
+  word-wrap: break-word;
+  text-decoration: underline;
+  cursor: pointer;
 }
-
-a {
-color: #2E56A6;
-}
-
-
-
 
 section, footer, nav {
   display: block;
@@ -59,12 +65,6 @@ a {
   color: blue;
   color: hsl( 220, 90%, 40% );
   text-decoration: none;
-}
-
-a:hover {
-  background-color: blue;
-  background-color: hsl( 220, 90%, 50% );
-  color: white;
 }
 
 #options {
